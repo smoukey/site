@@ -16,6 +16,61 @@
     <meta content="https://github.com/smoukey/smuk/blob/maina/assets/vbuck.png" property="og:image" />
     <meta content="#000000" data-react-helmet="true" name="theme-color" />
     <meta name="description" content="smuki">
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #cover {
+            background-color: black;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        #cover b {
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        #hero {
+            display: none;
+        }
+
+        .fadeout {
+            animation: fadeout 1s forwards;
+        }
+
+        @keyframes fadeout {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -23,40 +78,12 @@
         <source src="https://cdn.discordapp.com/attachments/1185887502062592112/1225109518669840426/yG42UlS6W6u9os7qG5sQQwrWbiJnbAtq.mp4?ex=661fef26&is=660d7a26&hm=6e11f4ad01eff58f6c2a0c5c2616c52fc3a498017e904ee5782eaa35f80a87bf&" type="video/mp4">
     </video>
     <div id="cover" class="overlay fullscreen">
-        <label onclick="showHero();playVideo();">
-            <b class="rainbow">click</b>
-        </label>
+        <b onclick="showHero();playVideo();">Click to play</b>
     </div>
 
     <audio id="audio" src="#" loop></audio>
 
     <script>
-        if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(
-                /iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator
-            .userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
-            alert("click");
-        }
-
-        document.addEventListener('contextmenu', event => event.preventDefault());
-        document.onkeydown = function (e) {
-            if (event.keyCode == 123) {
-                return false;
-            }
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
-                return false;
-            }
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
-                return false;
-            }
-            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
-                return false;
-            }
-        }
-
-        document.onselectstart = function () {
-            return false;
-        }
-
         function showHero() {
             var cover = document.getElementById("cover");
             if (cover) {
