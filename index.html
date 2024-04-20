@@ -13,9 +13,44 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <meta content="smuki" property="og:title" />
     <meta content="smuki" property="og:description" />
-    <meta content="https://github.com/smoukey/site/main/vbuck.png" property="og:image" />
+    <meta content="assets/vbuck.png" property="og:image" />
     <meta content="#000000" data-react-helmet="true" name="theme-color" />
     <meta name="description" content="smuki">
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: black; /* Set background to black */
+            font-family: 'DM Sans', sans-serif; /* Use DM Sans font */
+        }
+
+        .fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #cover {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            color: white; /* Set text color to white */
+            font-size: 24px; /* Set font size */
+            cursor: pointer; /* Set cursor to pointer */
+        }
+    </style>
 </head>
 
 <body>
@@ -23,10 +58,8 @@
         <source src="https://cdn.discordapp.com/attachments/1185887502062592112/1225109518669840426/yG42UlS6W6u9os7qG5sQQwrWbiJnbAtq.mp4?ex=661fef26&is=660d7a26&hm=6e11f4ad01eff58f6c2a0c5c2616c52fc3a498017e904ee5782eaa35f80a87bf&" type="video/mp4">
     </video>
     
-    <div id="cover" class="overlay fullscreen">
-        <label onclick="playVideo();">
-            <b class="rainbow">click</b>
-        </label>
+    <div id="cover" class="overlay fullscreen" onclick="playVideo();">
+        <b class="rainbow">click</b>
     </div>
 
     <audio id="audio" src="#" loop></audio>
@@ -39,6 +72,7 @@
             video.addEventListener('ended', function () {
                 video.controls = true; // Enable controls when the video ends
             });
+            document.getElementById("cover").style.display = "none"; // Hide the cover div after clicking
         }
     </script>
 </body>
