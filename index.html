@@ -13,98 +13,32 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <meta content="smuki" property="og:title" />
     <meta content="smuki" property="og:description" />
-    <meta content="https://github.com/smoukey/smuk/blob/maina/assets/vbuck.png" property="og:image" />
+    <meta content="https://github.com/smoukey/site/main/vbuck.png" property="og:image" />
     <meta content="#000000" data-react-helmet="true" name="theme-color" />
     <meta name="description" content="smuki">
-    <style>
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-            background-color: black; /* Set background to black */
-        }
-
-        .fullscreen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        #cover {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-
-        #cover b {
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-        }
-
-        #hero {
-            display: none;
-        }
-
-        .fadeout {
-            animation: fadeout 1s forwards;
-        }
-
-        @keyframes fadeout {
-            from {
-                opacity: 1;
-            }
-
-            to {
-                opacity: 0;
-            }
-        }
-    </style>
 </head>
 
 <body>
     <video class="fullscreen" id="video" loop controls="false" disablePictureInPicture>
         <source src="https://cdn.discordapp.com/attachments/1185887502062592112/1225109518669840426/yG42UlS6W6u9os7qG5sQQwrWbiJnbAtq.mp4?ex=661fef26&is=660d7a26&hm=6e11f4ad01eff58f6c2a0c5c2616c52fc3a498017e904ee5782eaa35f80a87bf&" type="video/mp4">
     </video>
+    
     <div id="cover" class="overlay fullscreen">
-        <b onclick="showHero();playVideo();">Click to play</b>
+        <label onclick="playVideo();">
+            <b class="rainbow">click</b>
+        </label>
     </div>
 
     <audio id="audio" src="#" loop></audio>
 
     <script>
-        function showHero() {
-            var cover = document.getElementById("cover");
-            if (cover) {
-                cover.style.display = "none";
-                cover.classList.add("fadeout");
-            }
-            var hero = document.getElementById("hero");
-            if (hero) {
-                hero.style.display = "block";
-            }
-        }
-
         function playVideo() {
             var video = document.getElementById("video");
-            if (video) {
-                video.play();
-                video.controls = false; // Disable controls after playing
-                video.addEventListener('ended', function () {
-                    video.controls = false; // Enable controls when the video ends
-                });
-            }
+            video.play();
+            video.controls = false; // Disable controls after playing
+            video.addEventListener('ended', function () {
+                video.controls = true; // Enable controls when the video ends
+            });
         }
     </script>
 </body>
