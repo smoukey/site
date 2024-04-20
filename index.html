@@ -30,11 +30,11 @@
             align-items: center;
             z-index: 9999;
             cursor: pointer;
-            color: white; /* Added to ensure text is visible */
+            color: white;
         }
 
         /* Make video fullscreen */
-        #video {
+        .fullscreen {
             position: fixed;
             top: 0;
             left: 0;
@@ -48,18 +48,20 @@
 
 <body>
     <div id="cover" onclick="playVideo();">
-        <b class="rainbow">click</b>
+        <b id="clickText" class="rainbow">click</b>
     </div>
 
-    <video id="video" loop controls="false" disablePictureInPicture>
+    <video id="video" class="fullscreen" loop controls="false" disablePictureInPicture>
         <source src="https://cdn.discordapp.com/attachments/1185887502062592112/1231310182143885312/KT9GRQmH1P9LQY7Lsw9Rdj4Vo7HisGky.mp4?ex=66367df8&is=662408f8&hm=d27a6857855a20463563aa860f62d9dc6d3c6cdb115a0ed63d61a19c4738eb28&" type="video/mp4">
     </video>
 
     <script>
         function playVideo() {
             var video = document.getElementById("video");
+            var clickText = document.getElementById("clickText");
             video.play();
             video.controls = false; // Disable controls after playing
+            clickText.style.display = "none"; // Hide click text when video starts playing
             video.addEventListener('ended', function () {
                 video.controls = true; // Enable controls when the video ends
             });
