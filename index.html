@@ -19,15 +19,15 @@
 </head>
 
 <body>
-    <video class="fullscreen" id="video" loop controls="false" disablePictureInPicture>
-        <source src="https://cdn.discordapp.com/attachments/1185887502062592112/1231310182143885312/KT9GRQmH1P9LQY7Lsw9Rdj4Vo7HisGky.mp4?ex=66367df8&is=662408f8&hm=d27a6857855a20463563aa860f62d9dc6d3c6cdb115a0ed63d61a19c4738eb28&" type="video/mp4">
-    </video>
-    
     <div id="cover" class="overlay fullscreen">
         <label onclick="playVideo();">
             <b class="rainbow">click</b>
         </label>
     </div>
+
+    <video id="video" loop controls="false" disablePictureInPicture style="display:none;">
+        <source src="https://cdn.discordapp.com/attachments/1185887502062592112/1231310182143885312/KT9GRQmH1P9LQY7Lsw9Rdj4Vo7HisGky.mp4?ex=66367df8&is=662408f8&hm=d27a6857855a20463563aa860f62d9dc6d3c6cdb115a0ed63d61a19c4738eb28&" type="video/mp4">
+    </video>
 
     <audio id="audio" src="#" loop></audio>
 
@@ -59,12 +59,19 @@
         }
 
         function playVideo() {
+            var cover = document.getElementById("cover");
+            cover.style.display = "none";
+
             var video = document.getElementById("video");
+            video.style.display = "block";
             video.play();
             video.controls = false; // Disable controls after playing
             video.addEventListener('ended', function () {
                 video.controls = true; // Enable controls when the video ends
             });
+
+            // Play video fullscreen on every device
+            video.requestFullscreen();
         }
     </script>
 </body>
