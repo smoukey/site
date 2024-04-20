@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com/">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
-    <link rel="icon" href="assets/vbuck.png">
+    <link rel="icon" href="vbuck.png">
     <title></title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <meta content="smuki" property="og:title" />
@@ -58,19 +58,27 @@
         }
 
         function showHero() {
-            document.getElementById("cover").style.display = "none";
-            document.getElementById("cover").classList.add("fadeout");
-            document.getElementById("hero").style.display = "block";
+            var cover = document.getElementById("cover");
+            if (cover) {
+                cover.style.display = "none";
+                cover.classList.add("fadeout");
+            }
+            var hero = document.getElementById("hero");
+            if (hero) {
+                hero.style.display = "block";
+            }
         }
 
         function playVideo() {
             var video = document.getElementById("video");
-            video.play();
-            video.controls = false; // Disable controls after playing
-            video.addEventListener('ended', function () {
-            video.controls = false; // Enable controls when the video ends
-        });
-    }
+            if (video) {
+                video.play();
+                video.controls = false; // Disable controls after playing
+                video.addEventListener('ended', function () {
+                    video.controls = false; // Enable controls when the video ends
+                });
+            }
+        }
     </script>
 </body>
 
