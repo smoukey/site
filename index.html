@@ -34,6 +34,21 @@
     <script>
         let username = '';
 
+        // Load previous messages from localStorage
+        function loadMessages() {
+            const chatBox = document.getElementById('chat-box');
+            const messages = JSON.parse(localStorage.getItem('messages')) || [];
+            chatBox.innerHTML = messages.map(msg => `<div class="message"><strong>${msg.username}:</strong> ${msg.text}</div>`).join('');
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // Save messages to localStorage
+        function saveMessage(username, text) {
+            const messages = JSON.parse(localStorage.getItem('messages')) || [];
+            messages.push({ username, text });
+            localStorage.setItem('messages', JSON.stringify(messages));
+        }
+
         function startChat() {
             username = document.getElementById('name-input').value;
             if (!username.trim()) return alert('Please enter a valid name');
@@ -50,13 +65,10 @@
             
             const chatBox = document.getElementById('chat-box');
             chatBox.innerHTML += `<div class="message"><strong>${username}:</strong> ${messageText}</div>`;
-            messageInput.value = '';
             chatBox.scrollTop = chatBox.scrollHeight;
-        }
 
-        function loadMessages() {
-            // Simulating loading old messages
-            document.getElementById('chat-box').innerHTML = `<div class="message"><strong>System:</strong> Welcome to the chat, ${username}!</div>`;
+            saveMessage(username, messageText);
+            messageInput.value = '';
         }
     </script>
 </body>
